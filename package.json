@@ -1,6 +1,6 @@
 {
   "name": "feederjs",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "An RSS/Atom feed parser that converts RSS and Atom Feeds to a single object type.",
   "main": "src/index.js",
   "scripts": {
@@ -28,6 +28,6 @@
     "sax": "^1.2.2"
   },
   "dependencies": {
-    "sax": "^1.2.2"
+    "follow-redirects": "^1.2.3"
   }
 }
