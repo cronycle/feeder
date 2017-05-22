@@ -371,9 +371,9 @@ function parseFeed(parser, feedType) {
   parser.oncdata = function oncdata(cdata) {
     // if tag is a property of the class, write the data
     if (objects.peek()) {
-      if (objects.peek()[tagName] === null) {
+      // if (objects.peek()[tagName] === null) {
         objects.peek()[tagName] = cdata;
-      }
+      // }
     }
   };
 
