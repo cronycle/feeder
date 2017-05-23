@@ -112,7 +112,12 @@ class Entry {
      * @type {string} 
      */
     this.content = null; // RSS: description
-    /** 
+    /**
+     * enclosure of this feed entry, should have a url, type and size.
+     * @type {Object}
+     */
+    this.enclosure = null; // RSS: same
+    /**
      * A brief summary of the content of this entry. 
      * @type {string} 
      */
@@ -179,6 +184,31 @@ class Author {
      * @type {string} 
      */
     this.uri = null;
+  }
+}
+
+/** Describes an enclosure element in a feed */
+class Enclosure {
+  constructor(enclosure) {
+    if (!enclosure) {
+      enclosure = {};
+    }
+
+    /**
+     * url of the asset.
+     * @type {string}
+     */
+    this.url = enclosure.url || null;
+    /**
+     * length of the asset
+     * @type {string}
+     */
+    this.length = enclosure.length || null;
+    /**
+     * type of asset
+     * @type {string}
+     */
+    this.type = enclosure.type || null;
   }
 }
 
@@ -330,6 +360,9 @@ function parseFeed(parser, feedType) {
     if (tagName === 'author') {
       current = new Author();
       objects.peek().author.push(current);
+    } else if (tagName === 'enclosure') {
+      current = new Enclosure(attributes);
+      objects.peek().enclosure = current;
     } else if (tagName === 'link') {
       current = new Link();
       // look for 'href' and 'rel' tags
