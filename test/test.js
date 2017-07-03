@@ -5,7 +5,10 @@ const feeder = require('../src/index');
 //feeder.getFeed('https://google.com', (data) => {if (data instanceof feeder.FeederException){console.log('error') } else {fs.writeFile('./test/test-output.json', JSON.stringify(data));} });
 
 //feeder.getFeed('http://feeds.reuters.com/news/artsculture?format=xml', (data) => { fs.writeFile('./test/test-output.json', JSON.stringify(data)); });
-feeder.getFeed('http://asd/;flkjasldjflasjdflsjdlfja.net', (data) => { fs.writeFile('./test/test-output.json', JSON.stringify(data)); });
+// feeder.getFeed('http://asd/;flkjasldjflasjdflsjdlfja.net', (data) => { fs.writeFile('./test/test-output.json', JSON.stringify(data)); });
+feeder.getFeed('http://aws.typepad.com/aws/atom.xml', (data) => {
+  fs.writeFile('./test/test-output.json', JSON.stringify(data));
+});
 
 
 // const feeder = require('../src/index');
