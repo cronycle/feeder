@@ -432,7 +432,7 @@ function xmlStringToJSON(xmlString) {
       // TODO: try handling for different rss versions
       feedType = FeedType.RSS2;
     } else {
-      const err = `Invalid Feed Type. Root Tag must be feed or rss. (tag name: ${tag.name})`;
+      const err = `Invalid Feed Type. Root Tag must be feed or rss. (tag name: ${tag.name}) ${xmlString}`;
 
       throw new FeederException(err);
     }
