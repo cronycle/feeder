@@ -2,6 +2,7 @@ const dns = require('dns');
 const http = require('follow-redirects').http;
 const https = require('follow-redirects').https;
 const saxjs = require('sax');
+const striptags = require('striptags');
 
  /** 
  * Feed Class, unified format that represents an Atom or RSS feed.
@@ -337,6 +338,13 @@ function getXmlString(url) {
   });
 }
 
+function sanitizeText(text) {
+  text = striptags(text);
+  text = text.replace(new RegExp("&nbsp;", "gi"), "");
+
+  return text.trim();
+}
+
 function parseFeed(parser, feedType) {
   const feed = new Feed();
   let attributes = {};
@@ -357,6 +365,7 @@ function parseFeed(parser, feedType) {
   parser.onopentag = function onopentag(tag) {
     let current;
     tagName = objects.peek() && Object.getPrototypeOf(objects.peek()) === Entry.prototype ? getEntryFieldName(feedType, tag.name) : getFeedFieldName(feedType, tag.name);
+
     if (tagName === 'author') {
       current = new Author();
       objects.peek().author.push(current);
@@ -403,7 +412,7 @@ function parseFeed(parser, feedType) {
     } else if (objects.peek()) {
       // if tag is a property of the class, write the data
       if (objects.peek()[tagName] === null) {
-        objects.peek()[tagName] = text;
+        objects.peek()[tagName] = sanitizeText(text);
       }
     }
   };

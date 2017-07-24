@@ -6,8 +6,13 @@ const feeder = require('../src/index');
 
 //feeder.getFeed('http://feeds.reuters.com/news/artsculture?format=xml', (data) => { fs.writeFile('./test/test-output.json', JSON.stringify(data)); });
 // feeder.getFeed('http://asd/;flkjasldjflasjdflsjdlfja.net', (data) => { fs.writeFile('./test/test-output.json', JSON.stringify(data)); });
-feeder.getFeed('https://www.google.co.uk/alerts/feeds/00748196499008602977/1479497132763089700', (data) => {
-  fs.writeFile('./test/test-output.json', JSON.stringify(data));
+
+// feeder.getFeed('https://www.google.co.uk/alerts/feeds/00748196499008602977/1479497132763089700', (data) => {
+//   fs.writeFile('./test/test-output.json', JSON.stringify(data));
+// });
+
+feeder.getFeed('http://feeds.feedburner.com/TechCrunch', (data) => {
+  console.log('data', data);
 });
 
 
