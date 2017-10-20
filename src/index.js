@@ -437,7 +437,7 @@ function xmlStringToJSON(xmlString) {
     // See what kind of feed we're dealing with
     if (tag.name === 'feed') {
       feedType = FeedType.ATOM;
-    } else if (tag.name === 'rss') {
+    } else if (tag.name === 'rss' || tag.name === 'rdf:RDF') {
       // TODO: try handling for different rss versions
       feedType = FeedType.RSS2;
     } else {
