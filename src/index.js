@@ -387,7 +387,7 @@ function parseFeed(parser, feedType) {
     } else if (tagName === 'entry') {
       current = new Entry();
       objects.peek().entrys.push(current);
-    } else if (tagName === 'media:thumbnail'/*, tagName === 'media:content'*/) {
+    } else if (tagName === 'media:thumbnail' || tagName === 'media:content') {
       if (attributes.url) {
         current = new Enclosure({
           url: attributes.url
